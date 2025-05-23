@@ -7,9 +7,9 @@ import { prisma } from '@/lib/prisma'
 import { formatPrice, toPersianDate } from '@/lib/utils'
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 const getProductDetails = async (id: string) => {
@@ -39,7 +39,8 @@ const getProductDetails = async (id: string) => {
 }
 
 const ProductPage = async ({ params }: ProductPageProps) => {
-  const product = await getProductDetails(params.id)
+  const { id } = await params
+  const product = await getProductDetails(id)
 
   if (!product) {
     return (
