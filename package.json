@@ -1,5 +1,12 @@
 {
   "name": "mango-price-compare",
+  "description": "Persian price comparison web application with web scraping capabilities",
+  "author": "Your Name",
+  "keywords": ["price-comparison", "web-scraping", "nextjs", "persian", "ecommerce"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mango-price-compare.git"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
