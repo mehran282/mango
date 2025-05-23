@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:tbpUxCX5JZ9kBWKKlyPPU4t2@tai.liara.cloud:31643/awesome_yonath"
+}
+
+model Store {
+  id        String       @id @default(cuid())
+  name      String
+  baseUrl   String
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  offers    StoreOffer[]
+
+  @@map("stores")
+}
+
+model Product {
+  id          String       @id @default(cuid())
+  name        String
+  description String?      @db.Text
+  mainImage   String?      @db.Text
+  specs       String?      @db.LongText
+  category    String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  offers      StoreOffer[]
+
+  @@map("products")
+}
+
+model StoreOffer {
+  id              String   @id @default(cuid())
+  productId       String
+  storeId         String
+  price           Float
+  originalPrice   Float?
+  discount        Float?
+  storeProductUrl String   @db.Text
+  isAvailable     Boolean  @default(true)
+  lastChecked     DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  product         Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  store           Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, storeId])
+  @@index([storeId], map: "store_offers_storeId_fkey")
+  @@map("store_offers")
+}

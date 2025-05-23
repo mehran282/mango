@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* تنظیمات فونت فارسی */
+.font-vazir {
+  font-family: 'Vazirmatn', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* اصلاح جهت اعداد فارسی */
+.persian-digits {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* استایل برای input ها */
+input[type="text"],
+input[type="email"], 
+input[type="url"],
+input[type="password"],
+select,
+textarea {
+  color: #374151 !important; /* خاکستری تیره */
+  background-color: #ffffff !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="url"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder {
+  color: #9CA3AF !important; /* خاکستری روشن برای placeholder */
+}
+
+/* تمرکز روی input */
+input:focus,
+select:focus,
+textarea:focus {
+  color: #1F2937 !important; /* خاکستری خیلی تیره وقت فوکوس */
+}
+
+/* استایل برای select options */select option {  color: #374151 !important;  background-color: #ffffff !important;}/* استایل بهبود یافته برای ProductCard */.line-clamp-2 {  display: -webkit-box;  -webkit-line-clamp: 2;  -webkit-box-orient: vertical;  overflow: hidden;}/* بهبود نمایش تصاویر محصولات */.product-image-container {  position: relative;  overflow: hidden;  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);}.product-image-container::before {  content: '';  position: absolute;  top: 0;  left: 0;  right: 0;  bottom: 0;  background: radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.02) 100%);  pointer-events: none;}/* انیمیشن برای hover روی کارت محصول */.product-card {  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}.product-card:hover {  transform: translateY(-2px);  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);}/* بهبود responsive grid */@media (max-width: 640px) {  .products-grid {    grid-template-columns: repeat(1, minmax(0, 1fr));    gap: 1rem;  }}@media (min-width: 641px) and (max-width: 768px) {  .products-grid {    grid-template-columns: repeat(2, minmax(0, 1fr));    gap: 1.25rem;  }}@media (min-width: 769px) and (max-width: 1024px) {  .products-grid {    grid-template-columns: repeat(3, minmax(0, 1fr));    gap: 1.5rem;  }}@media (min-width: 1025px) {  .products-grid {    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));    gap: 1.5rem;  }} 
