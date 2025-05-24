@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, ArrowLeft, Store } from 'lucide-react'
 import Header from '@/components/ui/Header'
+import ProductSpecs from '@/components/ui/ProductSpecs'
 import { prisma } from '@/lib/prisma'
 import { formatPrice, toPersianDate } from '@/lib/utils'
 
@@ -142,28 +143,23 @@ const ProductPage = async ({ params }: ProductPageProps) => {
             </div>
 
             {/* مشخصات فنی */}
-            {product.specs && (() => {
-              try {
-                const parsedSpecs = JSON.parse(product.specs as string) as Record<string, string | number>
-                return (
-                  <div className="bg-white rounded-lg shadow-md p-6 mt-6">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4 text-right">
-                      مشخصات فنی
-                    </h2>
-                    <div className="space-y-2">
-                      {Object.entries(parsedSpecs).map(([key, value]) => (
-                        <div key={key} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                          <span className="text-sm text-gray-500">{key}:</span>
-                          <span className="text-sm font-medium text-gray-900">{String(value)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              } catch (e) {
-                return null
-              }
-            })()}
+            <ProductSpecs 
+              specs={product.specs ? (() => {
+                try {
+                  console.log('Raw specs data:', product.specs) // Debug log
+                  const parsed = JSON.parse(product.specs as string)
+                  console.log('Parsed specs:', parsed) // Debug log
+                  return parsed as Record<string, string | number>
+                } catch (e) {
+                  console.error('Error parsing specs:', e, 'Raw:', product.specs)
+                  // اگر JSON parse نشد، سعی کن به عنوان plain text نمایش بدی
+                  if (typeof product.specs === 'string' && product.specs.trim()) {
+                    return { 'خطا در پارس': product.specs.substring(0, 100) + '...' }
+                  }
+                  return null
+                }
+              })() : null} 
+            />
           </div>
 
           {/* لیست فروشگاه‌ها */}

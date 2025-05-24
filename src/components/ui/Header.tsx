@@ -20,7 +20,7 @@ const Header = () => {
           {/* لوگو */}
           <Link href="/" className="flex items-center space-x-2 space-x-reverse">
             <ShoppingCart className="h-8 w-8 text-primary-600" />
-            <span className="text-xl font-bold text-gray-900">منگو</span>
+            <span className="text-xl font-bold text-gray-900">انبه</span>
           </Link>
 
           {/* جستجو */}

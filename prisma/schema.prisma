@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Store {
-  id        String       @id @default(cuid())
-  name      String
-  baseUrl   String
-  isActive  Boolean      @default(true)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-  offers    StoreOffer[]
+  id          String       @id @default(cuid())
+  name        String
+  baseUrl     String
+  productUrls String?      @db.Text // JSON array of product page URLs
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  offers      StoreOffer[]
 
   @@map("stores")
 }

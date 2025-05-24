@@ -13,6 +13,12 @@ async function main() {
     data: {
       name: 'دیجی‌کالا',
       baseUrl: 'https://www.digikala.com',
+      // @ts-ignore - productUrls field exists in schema but Prisma client not updated yet
+      productUrls: JSON.stringify([
+        'https://www.digikala.com/search/category-mobile-phone/',
+        'https://www.digikala.com/search/category-laptop/',
+        'https://www.digikala.com/search/category-tablet/'
+      ]),
     },
   })
 
@@ -20,6 +26,12 @@ async function main() {
     data: {
       name: 'تکنولایف',
       baseUrl: 'https://www.technolife.ir',
+      // @ts-ignore - productUrls field exists in schema but Prisma client not updated yet
+      productUrls: JSON.stringify([
+        'https://www.technolife.ir/product-list/mobile',
+        'https://www.technolife.ir/product-list/laptop',
+        'https://www.technolife.ir/product-list/tablet'
+      ]),
     },
   })
 
@@ -27,6 +39,11 @@ async function main() {
     data: {
       name: 'ایمالز',
       baseUrl: 'https://www.emalls.ir',
+      // @ts-ignore - productUrls field exists in schema but Prisma client not updated yet
+      productUrls: JSON.stringify([
+        'https://www.emalls.ir/shop/mobile-phone',
+        'https://www.emalls.ir/shop/laptop'
+      ]),
     },
   })
 

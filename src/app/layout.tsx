@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { ToastProvider } from '@/components/ui/ToastProvider'
 
 export const metadata: Metadata = {
-  title: 'مقایسه قیمت منگو',
+  title: 'مقایسه قیمت انبه',
   description: 'اپلیکیشن مقایسه قیمت محصولات از فروشگاه‌های مختلف',
 }
 
@@ -20,7 +21,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-vazir">
-        {children}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
       </body>
     </html>
   )
